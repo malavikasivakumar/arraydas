@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>basic</title>
+    </head>
+    <script>
+function getPermutations(array)
+{
+  const result = [];
+
+  function generatePermutations(currentPermutation, remainingArray) 
+  {
+    if (remainingArray.length === 0) 
+    {
+      result.push([...currentPermutation]);
+      return;
+    }
+
+    for (let i = 0; i < remainingArray.length; i++)
+     {
+      const updatedPermutation = [...currentPermutation, remainingArray[i]];
+      const updatedRemainingArray = [
+        ...remainingArray.slice(0, i),
+        ...remainingArray.slice(i + 1),
+      ];
+      generatePermutations(updatedPermutation, updatedRemainingArray);
+    }
+  }
+
+  generatePermutations([], array);
+  return result;
+}
+
+
+const inputArray = [1, 2, 3];
+const permutations = getPermutations(inputArray);
+console.log(permutations);
+
+    </script>
+</html>
